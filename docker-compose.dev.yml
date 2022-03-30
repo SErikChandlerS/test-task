@@ -6,7 +6,7 @@ version: "3.8"
 services:
   postgres:
     image: "postgres:13-alpine"
-    container_name: focus_postgres
+    container_name: test_postgres
     restart: unless-stopped
     volumes:
       - pgdata_focus:/var/lib/postgresql/data
@@ -16,7 +16,7 @@ services:
 
   python:
     image: "test:dev"
-    container_name: focus_python
+    container_name: test_python
     build:
       target: development_build
       context: .
