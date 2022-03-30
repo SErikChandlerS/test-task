@@ -1,13 +1,27 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from imagekit.models import ProcessedImageField
 
 from .managers import UserManager
+from .processors import Watermark
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    avatar = models.ImageField(upload_to='./src/', blank=True)
-    sex = models.CharField(max_length=10, blank=True)
+    MALE = 'M'
+    FEMALE = 'F'
+    GENDERS = [
+        (MALE, 'male'),
+        (FEMALE, 'female'),
+    ]
+
+    avatar = ProcessedImageField(
+        upload_to='src/',
+        blank=True,
+        null=True,
+        processors=[Watermark()]
+    )
+    sex = models.CharField(max_length=1, choices=GENDERS)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
     email = models.EmailField(blank=True, unique=True)
