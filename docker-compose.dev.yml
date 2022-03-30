@@ -1,0 +1,36 @@
+---
+
+
+
+version: "3.8"
+services:
+  postgres:
+    image: "postgres:13-alpine"
+    container_name: focus_postgres
+    restart: unless-stopped
+    volumes:
+      - pgdata_focus:/var/lib/postgresql/data
+    env_file: ./config/.env
+    ports:
+      - "5432:5432"
+
+  python:
+    image: "test:dev"
+    container_name: focus_python
+    build:
+      target: development_build
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+      args:
+        DJANGO_ENV: development
+    depends_on:
+      - postgres
+    env_file: ./config/.env
+    command: python -Wd manage.py runserver 0.0.0.0:8000
+    ports:
+    - "8000:8000"
+    volumes:
+      - .:/code
+
+volumes:
+  pgdata_focus:
