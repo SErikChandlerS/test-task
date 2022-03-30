@@ -267,6 +267,17 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-appconf"
+version = "1.0.5"
+description = "A helper class for handling configuration defaults of packaged apps gracefully."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = "*"
+
+[[package]]
 name = "django-axes"
 version = "5.31.0"
 description = "Keep track of failed login attempts in Django-powered sites."
@@ -349,6 +360,24 @@ python-versions = ">=3.5.0"
 
 [package.dependencies]
 Django = ">=1.11"
+
+[[package]]
+name = "django-imagekit"
+version = "4.1.0"
+description = "Automated image processing for Django models."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django-appconf = {version = "*", markers = "python_version > \"3\""}
+pilkit = ">=0.2.0"
+six = "*"
+
+[package.extras]
+async = ["django-celery (>=3.0)"]
+async_dramatiq = ["django-dramatiq (>=0.4.0)"]
+async_rq = ["django-rq (>=0.6.0)"]
 
 [[package]]
 name = "django-ipware"
@@ -1138,6 +1167,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "pilkit"
+version = "2.0"
+description = "A collection of utilities and processors for the Python Imaging Libary."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pillow"
 version = "9.0.1"
 description = "Python Imaging Library (Fork)"
@@ -1729,7 +1766,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.9"
-content-hash = "f32c7ffde3bd1c2e1ef69cc049cce18c525cd107ed024bff91d2f8a46a7d6452"
+content-hash = "f6f0788cb5a1627b44a4e0afaddf545c526901143abf03b76d62be0dbc0e66c9"
 
 [metadata.files]
 appdirs = [
@@ -1932,6 +1969,10 @@ django = [
     {file = "Django-3.2.10-py3-none-any.whl", hash = "sha256:df6f5eb3c797b27c096d61494507b7634526d4ce8d7c8ca1e57a4fb19c0738a3"},
     {file = "Django-3.2.10.tar.gz", hash = "sha256:074e8818b4b40acdc2369e67dcd6555d558329785408dcd25340ee98f1f1d5c4"},
 ]
+django-appconf = [
+    {file = "django-appconf-1.0.5.tar.gz", hash = "sha256:be3db0be6c81fa84742000b89a81c016d70ae66a7ccb620cdef592b1f1a6aaa4"},
+    {file = "django_appconf-1.0.5-py3-none-any.whl", hash = "sha256:ae9f864ee1958c815a965ed63b3fba4874eec13de10236ba063a788f9a17389d"},
+]
 django-axes = [
     {file = "django-axes-5.31.0.tar.gz", hash = "sha256:e6754be4c8a9e55a25381e4aea6aeb1ec1f0d8dd025f233d9caa910ce9be6728"},
     {file = "django_axes-5.31.0-py3-none-any.whl", hash = "sha256:17f1884a439d2a20495c0c03427922634ab7828cd030d9bc1ce3d0425917ff36"},
@@ -1959,6 +2000,10 @@ django-health-check = [
 django-http-referrer-policy = [
     {file = "django-http-referrer-policy-1.1.1.tar.gz", hash = "sha256:917f5ed62054b27eff3172b7eccfb018469e85ddd538767328553282a70493c3"},
     {file = "django_http_referrer_policy-1.1.1-py2.py3-none-any.whl", hash = "sha256:7617d1256f1ab80c1a12bffdd8c8d24b94093eb1e21d035e2aa6d7d3c5ac999e"},
+]
+django-imagekit = [
+    {file = "django-imagekit-4.1.0.tar.gz", hash = "sha256:e559aeaae43a33b34f87631a9fa5696455e4451ffa738a42635fde442fedac5c"},
+    {file = "django_imagekit-4.1.0-py2.py3-none-any.whl", hash = "sha256:87e36f8dc1d8745647881f4366ef4965225f048042dacebbee0dcb87425defef"},
 ]
 django-ipware = [
     {file = "django-ipware-4.0.2.tar.gz", hash = "sha256:602a58325a4808bd19197fef2676a0b2da2df40d0ecf21be414b2ff48c72ad05"},
@@ -2227,6 +2272,9 @@ pexpect = [
 pickleshare = [
     {file = "pickleshare-0.7.5-py2.py3-none-any.whl", hash = "sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56"},
     {file = "pickleshare-0.7.5.tar.gz", hash = "sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca"},
+]
+pilkit = [
+    {file = "pilkit-2.0.tar.gz", hash = "sha256:ddb30c2f0198a147e56b151476c3bb9fe045fbfd5b0a0fa2a3148dba62d1559f"},
 ]
 pillow = [
     {file = "Pillow-9.0.1-1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:a5d24e1d674dd9d72c66ad3ea9131322819ff86250b30dc5821cbafcfa0b96b4"},
