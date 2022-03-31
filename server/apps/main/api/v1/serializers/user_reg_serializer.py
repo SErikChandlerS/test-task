@@ -4,7 +4,6 @@ from server.apps.main.models import User
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField()
 
     class Meta:
         model = User
@@ -23,7 +22,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         password2 = self.validated_data['password2']
 
         if password != password2:
-            raise serializers.ValidationError({password: "Пароль не совпадает"})
+            raise serializers.ValidationError({password: "Password not confirmed"})
+
+        if password is None:
+            raise serializers.ValidationError({password: "Password must not be NULL"})
 
         user.set_password(password)
         user.save()
