@@ -10,8 +10,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from typing import Dict, List, Tuple, Union, Any
 
-import retailcrm
-from dadata import Dadata
 from django.utils.translation import gettext_lazy as _
 
 from server.settings.components import BASE_DIR, config
@@ -214,6 +212,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 REST_FRAMEWORK: dict[str, Any] = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
     'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 AUTH_USER_MODEL = 'main.User'

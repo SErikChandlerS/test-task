@@ -4,6 +4,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from server.apps.main.api.v1.serializers.user_reg_serializer import UserRegisterSerializer
 from server.apps.main.models import User
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class RegisterUserView(CreateAPIView):
@@ -21,3 +22,8 @@ class RegisterUserView(CreateAPIView):
         else:
             data = serializer.errors
             return Response(data=data)
+
+    filter_backends =[
+        DjangoFilterBackend,
+    ]
+    filterset_fields = ['sex', 'first_name', 'last_name']
