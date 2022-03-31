@@ -217,3 +217,12 @@ REST_FRAMEWORK: dict[str, Any] = {
 }
 
 AUTH_USER_MODEL = 'main.User'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config('EMAIL_ADDR')
+EMAIL_HOST_PASSWORD = config('EMAIL_PWD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

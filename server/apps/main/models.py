@@ -1,8 +1,8 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.db.models import Model, ForeignKey, CASCADE
 from imagekit.models import ProcessedImageField
-
 from .managers import UserManager
 from .processors import Watermark
 
@@ -41,3 +41,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
+
+
+class Match(Model):
+    sender = ForeignKey(User, on_delete=CASCADE, related_name='senders')
+    recipient = ForeignKey(User, on_delete=CASCADE, related_name='recipients')
+
+    class Meta:
+        unique_together = (
+            'sender',
+            'recipient',
+        )
